@@ -17,7 +17,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     </head>
-    <body>"""
+    <body>
+    Code on <a href='https://github.com/idvorkin/render-matplotlib'> github</a>
+    """
 
     for name in "productivity,what-to-work-on,not-valid".split(","):
         output += img(name)
