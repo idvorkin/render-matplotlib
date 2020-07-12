@@ -4,9 +4,21 @@ import matplotlib as g_mpl
 import matplotlib.pyplot as g_plt
 import numpy as np
 import io
-from ..shared_code import productivity
+import sys
 
+import inspect
 
+def in_unit_test():
+    cli = sys.argv[0]
+    return "unittest" in cli
+
+# Yuk, something wonky on imports in azure functions
+# Need different imports when running on unit tests
+# BLEH!!
+if in_unit_test():
+    from shared_code import productivity
+else:
+    from ..shared_code import productivity
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
@@ -21,7 +33,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('name')
 
     if name:
-        g_mpl.use('SVG') 
+        g_mpl.use('SVG')
         g_plt.ioff()
         g_plt.clf()
         p = productivity.render(g_plt)
