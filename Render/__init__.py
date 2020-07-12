@@ -22,9 +22,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         g_mpl.use('SVG') 
         g_plt.ioff()
         g_plt.clf()
-        p = render(g_plt, g_mpl)
+        p = render(g_plt)
         buf = io.BytesIO()
-        p.savefig(buf, format='svg')
+        p.savefig(buf, format='svg',bbox_inches="tight")
         buf.seek(0)
         return func.HttpResponse(buf.read(), mimetype='image/svg+xml')
     else:
@@ -35,18 +35,19 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     return
 
 
-def render(plt,mpl):
+def render(plt):
     plt.xkcd()
-    height_in_inches = 12
-    g_mpl.rc("figure", figsize=(2 * height_in_inches, height_in_inches))
 
-    # Pie chart, where the slices will be ordered and plotted counter-clockwise:
 
     fig1, (
         (ax_thought_more_productive, ax_normal_hours),
         (ax_actually, ax_more_hours),
     ) = plt.subplots(2, 2)
 
+    height_in_inches = 12
+    fig1.set_size_in_inches("figure", figsize=(2 * height_in_inches, height_in_inches))
+
+    # Pie chart, where the slices will be ordered and plotted counter-clockwise:
     ax_thought_more_productive.set_title(" What I thought would make me \n more productive")
     ax_thought_more_productive.pie(
         [100, 10], labels=["More hours", "More Money"], startangle=200
@@ -76,7 +77,7 @@ def render(plt,mpl):
 
 
 
-def render_entr(plt,mpl):
+def render_entr(plt):
     plt.xkcd()
     start_year = 2002
     end_year = 2018
