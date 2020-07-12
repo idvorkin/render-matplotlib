@@ -1,5 +1,6 @@
 import azure.functions as func
 
+
 def main(req: func.HttpRequest) -> func.HttpResponse:
     def img(name):
         return f"""
@@ -18,10 +19,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     </head>
     <body>"""
 
-    for name in "productivity,what-to-work-on,not-valid".split(','):
-        output+=img(name)
+    for name in "productivity,what-to-work-on,not-valid".split(","):
+        output += img(name)
 
-    output+="""
+    output += """
     </body>
     </html>
     """
