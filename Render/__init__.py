@@ -18,13 +18,14 @@ def in_unit_test():
 # Need different imports when running on unit tests
 # BLEH!!
 if in_unit_test():
-    from shared_code import productivity, who_works_on_what
+    from shared_code import productivity, who_works_on_what, career_convo
 else:
-    from ..shared_code import productivity, who_works_on_what
+    from ..shared_code import productivity, who_works_on_what, career_convo
 
 g_render_map = {
     "productivity": productivity.render,
     "what-to-work-on": who_works_on_what.render,
+    "career-convo": career_convo.render,
 }
 
 

@@ -3,6 +3,7 @@ import sys
 import azure.functions as func
 from shared_code import productivity
 from shared_code import who_works_on_what
+from shared_code import career_convo
 import Render
 import Debug
 import matplotlib as g_mpl
@@ -39,6 +40,14 @@ class TestProductivity(unittest.TestCase):
         resp = http_call(Render.main, "productivity")
         self.assertEqual(resp.status_code, 200)
 
+class TestCareerConvo(unittest.TestCase):
+    def test_no_crash(self):
+        renderToFile(career_convo.render)
+        self.assertTrue(True)
+
+    def test_no_500(self):
+        resp = http_call(Render.main, "career-convo")
+        self.assertEqual(resp.status_code, 200)
 
 class TestWhoWorksOnWhat(unittest.TestCase):
     def test_no_crash(self):
