@@ -21,7 +21,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     Code on <a href='https://github.com/idvorkin/render-matplotlib'> github</a>
     """
 
-    for name in "productivity,what-to-work-on,not-valid".split(","):
+    for name in "productivity,what-to-work-on,not-valid,career-convo".split(","):
         output += img(name)
 
     output += """
