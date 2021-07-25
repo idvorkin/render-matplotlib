@@ -14,7 +14,11 @@ https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-az
 
 
 
-### Unit Tests
+### Testing
+
+Simulate func env
+
+    func start
 
 Run Unit Tests
 
@@ -41,7 +45,3 @@ Init virtual env:
 
     source .venv/bin/activate
 
-
-Simulate func env
-
-    func start
